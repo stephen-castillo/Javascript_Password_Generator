@@ -26,6 +26,7 @@ function generatePassword(){
     var p_length = prompt('Password length (minimum 8 characters, maximum 128 characters');
     
     if (p_length !== null && parseInt(p_length) !== NaN && p_length > 7 && p_length < 129){    
+        
         var p_lower = prompt('Do you want your password to include lowercase letters?');
         p_lower = p_lower.toLowerCase();
 
@@ -95,14 +96,21 @@ function generatePassword(){
         return message;
     }
 
+    p_mix = p_array.length;
+    //alert(p_mix);
 
     for (i = 0; i < parseInt(p_length); i++){
         var rando = 0;
-        rando = Math.floor(Math.random(p_array.length));
-        password.concat(p_array[rando]);
+        rando = Math.floor(Math.random() * p_mix);
+        password = password.concat(p_array[rando]);
+        //Prevent space from being first character
+        if (i = 0 && password === ' '){
+            rando = Math.floor(Math.random() * p_mix);
+            password = password.concat(p_array[rando]);
+        }
     }
 
-   return password;
+    return password;
 }
 /* 
 1. Click button, make prompts 
