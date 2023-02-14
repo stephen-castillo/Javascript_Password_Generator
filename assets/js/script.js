@@ -23,13 +23,17 @@ function generatePassword(){
     const special = [' ','!', '"', '#','$','%','&','\'','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~'];
     var password = ''; 
 
+    //Get user input for password length
     var p_length = prompt('Password length (minimum 8 characters, maximum 128 characters');
     
+    //validate password length is an int and within bounds
     if (p_length !== null && parseInt(p_length) !== NaN && p_length > 7 && p_length < 129){    
         
+        //get  user input for lowercase characters
         var p_lower = prompt('Do you want your password to include lowercase letters?');
+        
+        //validate input
         p_lower = p_lower.toLowerCase();
-
         if(p_lower === 'yes' || p_lower === 'y'){
             p_array = lower;
             //alert(p_array);
@@ -44,8 +48,9 @@ function generatePassword(){
         }
 
         var p_upper = prompt('Do you want your password to include uppercase letters?');
-        p_upper = p_upper.toLowerCase();
 
+        //validate input
+        p_upper = p_upper.toLowerCase();
         if(p_upper === 'yes' || p_upper === 'y'){
             p_array = p_array.concat(upper);
             //alert(p_array);
@@ -60,8 +65,9 @@ function generatePassword(){
         }
 
         var p_number = prompt('Do you want your password to include numbers?');
-        p_number = p_number.toLowerCase();
 
+        //validate input
+        p_number = p_number.toLowerCase();
         if(p_number === 'yes' || p_number === 'y'){
             p_array = p_array.concat(num);
             //alert(p_array);
@@ -76,8 +82,9 @@ function generatePassword(){
         }
 
         var p_special = prompt('Do you want your password to include special characters?');
-        p_special = p_special.toLowerCase();
 
+        //validate input
+        p_special = p_special.toLowerCase();
         if(p_special === 'yes' || p_special === 'y'){
             p_array = p_array.concat(special);
             //alert(p_array);
@@ -96,18 +103,21 @@ function generatePassword(){
         return message;
     }
 
+    //Length of merged array with requested options
     p_mix = p_array.length;
     //alert(p_mix);
 
+    //for each item in the password length generate a random number from 0 to option length, select 
+    //character equal to number
     for (i = 0; i < parseInt(p_length); i++){
         var rando = 0;
         rando = Math.floor(Math.random() * p_mix);
         password = password.concat(p_array[rando]);
         //Prevent space from being first character
-        if (i = 0 && password === ' '){
+        /* if (i = 0 && password === ' '){
             rando = Math.floor(Math.random() * p_mix);
             password = password.concat(p_array[rando]);
-        }
+        } */
     }
 
     return password;
